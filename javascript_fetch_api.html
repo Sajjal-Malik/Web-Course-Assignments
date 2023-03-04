@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>API Example</title>
+  </head>
+  <body>
+    <h1>Random User Data</h1>
+    <div id="user"></div>
+  </body>
+
+
+<script>
+fetch('https://randomuser.me/api/')
+  .then(response => response.json())
+  .then(data => {
+    const user = data.results[0];
+    const name = `${user.name.first} ${user.name.last}`;
+    const email = user.email;
+    const phone = user.phone;
+    const gender = user.gender;
+    const loc = `${user.location.city} ${user.location.country}`;
+    const userDiv = document.querySelector('#user');
+    userDiv.innerHTML = `
+      <h2>${name}</h2>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Gender:</strong> ${gender}</p>
+      <p><strong>Loc:</strong> ${loc}</p>
+    `;
+  });
+
+</script>
+</html>
